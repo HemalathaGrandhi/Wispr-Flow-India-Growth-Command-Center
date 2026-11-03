@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Wispr Flow: India Growth Command Center</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Newsreader:opsz,wght@6..72,500;6..72,600&family=DM+Sans:wght@400;500;700&display=swap">
+<style>
+:root{
+  /* Approximate Wispr palette (sage, forest, cream, sand). Swap these for exact brand hex values. */
+  --bg:#0F1713;--card:#17221B;--line:#26362C;--ink:#EAF1E6;--muted:#98A79C;
+  --accent:#9BE3B0;--sage:#CFE0C3;--sand:#E9D9A6;--deep:#2F6B4F;--on-accent:#0F1713;
+  box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px);color-scheme:dark;
+}
+@media (prefers-color-scheme:light){
+  :root:not([data-theme="dark"]){--bg:#F7F4EC;--card:#FFFFFF;--line:#DDD8CA;--ink:#1F2A24;--muted:#5B675F;--accent:#2F6B4F;--sage:#CFE0C3;--sand:#B8962E;--deep:#2F6B4F;--on-accent:#F7F4EC;color-scheme:light}
+}
+:root[data-theme="light"]{--bg:#F7F4EC;--card:#FFFFFF;--line:#DDD8CA;--ink:#1F2A24;--muted:#5B675F;--accent:#2F6B4F;--sage:#CFE0C3;--sand:#B8962E;--deep:#2F6B4F;--on-accent:#F7F4EC;color-scheme:light}
+*{box-sizing:border-box}
+html{height:100%;scroll-padding-top:env(safe-area-inset-top,0px)}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.55 "DM Sans",system-ui,sans-serif;overflow-x:hidden}
+h1,h2,h3{font-family:"Newsreader",Georgia,serif;font-weight:600;letter-spacing:-.01em;line-height:1.12;margin:0}
+.wrap{max-width:1080px;margin:0 auto;padding:0 20px 72px}
+header.top{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;background:color-mix(in srgb,var(--bg) 88%,transparent);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+header.top .in{max-width:1080px;margin:0 auto;padding:12px 20px;display:flex;align-items:center;gap:12px;justify-content:space-between;flex-wrap:wrap}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);background:var(--bg);z-index:6}
+.brand{display:flex;align-items:center;gap:10px;font-weight:700}
+.logo{width:34px;height:34px;border-radius:10px;background:var(--accent);display:grid;place-items:center}
+.logo svg{width:18px;height:18px;fill:var(--on-accent)}
+.pill{font-size:12px;border:1px solid var(--line);border-radius:99px;padding:4px 10px;color:var(--muted);display:inline-flex;align-items:center;gap:6px}
+.dot{width:8px;height:8px;border-radius:50%;background:var(--accent);animation:pulse 2s infinite}
+@keyframes pulse{0%{box-shadow:0 0 0 0 color-mix(in srgb,var(--accent) 60%,transparent)}100%{box-shadow:0 0 0 9px transparent}}
+.hero{padding:56px 0 8px;display:grid;gap:28px;grid-template-columns:1.2fr .8fr;align-items:center}
+@media(max-width:760px){.hero{grid-template-columns:1fr}}
+.hero h1{font-size:clamp(36px,6vw,60px);max-width:14ch}
+.hero p{color:var(--muted);font-size:18px;max-width:52ch;margin:16px 0 18px}
+.chips{display:flex;flex-wrap:wrap;gap:8px}
+.eq{display:flex;align-items:center;gap:6px;height:150px;justify-content:center;background:var(--card);border:1px solid var(--line);border-radius:24px;padding:0 24px}
+.eq i{display:block;width:8px;border-radius:8px;background:var(--accent);height:30%;animation:eq 1.2s ease-in-out infinite}
+.eq i:nth-child(3n){background:var(--sage)}.eq i:nth-child(4n){background:var(--sand)}
+@keyframes eq{0%,100%{height:18%}50%{height:90%}}
+section{margin-top:56px}
+section>h2{font-size:clamp(26px,3.6vw,34px);margin-bottom:6px}
+.sub{color:var(--muted);margin:0 0 20px;max-width:62ch}
+.card{background:var(--card);border:1px solid var(--line);border-radius:20px;padding:22px}
+.grid{display:grid;gap:16px}
+.g4{grid-template-columns:repeat(auto-fit,minmax(220px,1fr))}
+.g2{grid-template-columns:repeat(auto-fit,minmax(320px,1fr))}
+.kpi small{color:var(--muted);font-size:13px}
+.kpi b{display:block;font:600 34px "Newsreader",Georgia,serif;margin:4px 0;color:var(--accent)}
+.kpi span{font-size:13px;color:var(--muted)}
+.gap .row{margin:14px 0}
+.gap .lab{display:flex;justify-content:space-between;font-weight:500;font-size:15px;margin-bottom:6px}
+.track{height:24px;border-radius:99px;background:var(--bg);overflow:hidden}
+.fill{height:100%;width:0;border-radius:99px;background:var(--accent);transition:width 1.4s cubic-bezier(.2,.8,.2,1)}
+.fill.sand{background:var(--sand)}
+label.c{display:flex;justify-content:space-between;font-weight:500;font-size:14px;margin-top:16px}
+label.c em{font-style:normal;color:var(--accent);font-weight:700}
+input[type=range]{width:100%;accent-color:var(--accent);margin:8px 0 0}
+.fun .r{display:grid;grid-template-columns:130px 1fr 82px;gap:10px;align-items:center;margin:11px 0;font-size:14px}
+.fun .r span:last-child{text-align:right;font-weight:700}
+.fun .track{height:16px}
+.fun .fill{transition:width .5s ease}
+#chart{width:100%;height:auto;display:block}
+.leg{display:flex;gap:16px;font-size:13px;color:var(--muted);margin-bottom:6px;flex-wrap:wrap}
+.leg i{display:inline-block;width:10px;height:10px;border-radius:50%;margin-right:6px}
+.tabs{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:16px}
+.tabs button{font:500 14px "DM Sans",sans-serif;color:var(--muted);background:transparent;border:1px solid var(--line);border-radius:99px;padding:8px 16px;cursor:pointer;transition:.2s}
+.tabs button[aria-selected=true]{background:var(--accent);color:var(--on-accent);border-color:var(--accent)}
+#camp{animation:swap .45s ease}
+@keyframes swap{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+.camp{display:grid;gap:20px;grid-template-columns:1.4fr 1fr}
+@media(max-width:760px){.camp{grid-template-columns:1fr}}
+.camp h3{font-size:24px;margin-bottom:8px}
+.camp ul{list-style:none;padding:0;margin:14px 0 0;display:grid;gap:8px}
+.camp li{background:var(--bg);border:1px solid var(--line);border-radius:12px;padding:10px 12px;font-size:14px}
+.side{background:var(--bg);border:1px solid var(--line);border-radius:16px;padding:18px;font-size:14px}
+.side div{display:flex;justify-content:space-between;gap:12px;padding:7px 0;border-bottom:1px solid var(--line)}
+.side div:last-of-type{border:0}
+.side b{color:var(--accent);text-align:right}
+.btn{width:100%;margin-top:14px;padding:11px;border:0;border-radius:12px;background:var(--accent);color:var(--on-accent);font:700 14px "DM Sans",sans-serif;cursor:pointer;transition:transform .15s}
+.btn:active{transform:scale(.97)}
+.tl{display:grid;gap:16px;grid-template-columns:repeat(auto-fit,minmax(240px,1fr))}
+.ph .bar{height:6px;border-radius:6px;background:var(--bg);margin:14px 0;overflow:hidden}
+.ph .bar i{display:block;height:100%;width:0;background:var(--accent);transition:width 1.4s cubic-bezier(.2,.8,.2,1)}
+.ph ul{margin:0;padding-left:18px;font-size:14px;color:var(--muted)}
+.ph h3{font-size:22px}
+.gate{margin-top:12px;font-size:13px;background:var(--bg);border-radius:10px;padding:8px 10px;border:1px dashed var(--line)}
+table{width:100%;border-collapse:collapse;font-size:14px;min-width:620px}
+th,td{text-align:left;padding:12px 10px;border-bottom:1px solid var(--line);vertical-align:top}
+th{color:var(--muted);font-weight:500}
+tr:last-child td{border:0}
+.ok{display:inline-block;background:color-mix(in srgb,var(--accent) 18%,transparent);color:var(--accent);border-radius:99px;padding:2px 10px;font-size:12px;font-weight:700;white-space:nowrap}
+.scroll{overflow-x:auto}
+.rv{opacity:0;transform:translateY(18px);transition:opacity .7s ease,transform .7s ease}
+.rv.in{opacity:1;transform:none}
+#toast{position:fixed;right:16px;bottom:calc(16px + env(safe-area-inset-bottom,0px));background:var(--accent);color:var(--on-accent);padding:12px 16px;border-radius:14px;font-weight:700;font-size:14px;transform:translateY(160px);transition:transform .4s cubic-bezier(.2,.9,.3,1.2);z-index:9;max-width:80vw}
+#toast.show{transform:none}
+footer{margin-top:48px;color:var(--muted);font-size:13px;max-width:72ch}
+:focus-visible{outline:3px solid var(--accent);outline-offset:3px}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}.rv{opacity:1;transform:none}}
+</style>
+</head>
+<body>
+<header class="top"><div class="in">
+  <div class="brand"><div class="logo"><svg viewBox="0 0 24 24"><path d="M12 15a4 4 0 0 0 4-4V6a4 4 0 0 0-8 0v5a4 4 0 0 0 4 4Zm6-4a6 6 0 0 1-12 0H4a8 8 0 0 0 7 7.9V22h2v-3.1A8 8 0 0 0 20 11h-2Z"/></svg></div>Wispr Flow · India Command Center</div>
+  <div class="chips"><span class="pill"><i class="dot"></i>Hinglish live</span><span class="pill">Android live</span><span class="pill">₹320 annual-plan pricing live</span></div>
+</div></header>
+
+<div class="wrap">
+  <div class="hero">
+    <div>
+      <h1>India is installing Flow. Here is how we make it pay.</h1>
+      <p>One room for the diagnosis, the levers, the campaigns and the risks. Move a slider and every number below recalculates.</p>
+      <div class="chips"><span class="pill">14% of installs</span><span class="pill">about 2% of revenue</span><span class="pill">growth 60% to 100% MoM after Hinglish</span></div>
+    </div>
+    <div class="eq" id="eq" aria-hidden="true"></div>
+  </div>
+
+  <section class="rv">
+    <h2>The gap we are closing</h2>
+    <p class="sub">Public figures from reporting on Wispr’s India push. Awareness is working; conversion and payment friction are the leaks.</p>
+    <div class="card gap">
+      <div class="row"><div class="lab"><span>Share of global installs</span><span>14%</span></div><div class="track"><div class="fill" data-w="14"></div></div></div>
+      <div class="row"><div class="lab"><span>Share of global revenue</span><span>about 2%</span></div><div class="track"><div class="fill sand" data-w="2"></div></div></div>
+    </div>
+  </section>
+
+  <section class="rv">
+    <h2>Scenario results</h2>
+    <p class="sub">Monthly outputs from the simulator below. These are modelled assumptions, not company data.</p>
+    <div class="grid g4">
+      <div class="card kpi"><small>Activated users a month</small><b id="kAct">0</b><span>3 apps used within 72 hours</span></div>
+      <div class="card kpi"><small>New paying users a month</small><b id="kPay">0</b><span id="kConv"></span></div>
+      <div class="card kpi"><small>Month 6 MRR</small><b id="kMrr">0</b><span>after churn</span></div>
+      <div class="card kpi"><small>LTV to CAC</small><b id="kRatio">0</b><span id="kCac"></span></div>
+    </div>
+  </section>
+
+  <section class="rv">
+    <h2>Growth engine simulator</h2>
+    <p class="sub">Pull the levers the team controls. Watch the funnel and the six-month curve respond.</p>
+    <div class="grid g2">
+      <div class="card">
+        <label class="c" for="iB">Monthly paid budget <em id="vB"></em></label><input id="iB" type="range" min="2" max="30" step="1" value="10">
+        <label class="c" for="iP">Monthly price, ₹ <em id="vP"></em></label><input id="iP" type="range" min="99" max="499" step="10" value="320">
+        <label class="c" for="iR">Referral loop power <em id="vR"></em></label><input id="iR" type="range" min="1" max="3" step="1" value="2">
+        <label class="c" for="iO">Onboarding lift (Hinglish, WhatsApp-first) <em id="vO"></em></label><input id="iO" type="range" min="1" max="1.6" step="0.05" value="1.2">
+        <label class="c" for="iC">Checkout and paywall lift (UPI, time saved) <em id="vC"></em></label><input id="iC" type="range" min="1" max="2" step="0.05" value="1.4">
+        <div class="fun" style="margin-top:22px" id="fun"></div>
+      </div>
+      <div class="card">
+        <div class="leg"><span><i style="background:var(--accent)"></i>Monthly recurring revenue</span><span><i style="background:var(--sand)"></i>Weekly dictating users</span></div>
+        <svg id="chart" viewBox="0 0 560 300" role="img" aria-label="Six month projection of revenue and users"></svg>
+        <p class="sub" style="margin:10px 0 0;font-size:13px">Each line is scaled to its own maximum. End labels show Month 6 values.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="rv">
+    <h2>Campaign war room</h2>
+    <p class="sub">Three plays, each with a target, an owner and a rule for when we scale or stop.</p>
+    <div class="tabs" role="tablist" id="tabs"></div>
+    <div class="card" id="camp"></div>
+  </section>
+
+  <section class="rv">
+    <h2>90-day roadmap</h2>
+    <p class="sub">Phases advance only when the gate is met.</p>
+    <div class="tl" id="tl"></div>
+  </section>
+
+  <section class="rv">
+    <h2>Risks, already handled</h2>
+    <div class="card scroll"><table>
+      <thead><tr><th>Risk</th><th>How we handle it</th><th>Owner</th><th>Status</th></tr></thead>
+      <tbody>
+        <tr><td>Low price erodes margin</td><td>Margin floor per plan; no permanent price cut before the ladder test reads out</td><td>Finance + Growth</td><td><span class="ok">Guardrail set</span></td></tr>
+        <tr><td>Free tools (Gboard, OEM voice typing)</td><td>Win on cleaned, grammar-fixed output and cross-device sync; prove it in demos</td><td>Product</td><td><span class="ok">Message ready</span></td></tr>
+        <tr><td>Junk installs from creators</td><td>Pay on activated users, cap spend per creator, run fraud checks</td><td>Growth</td><td><span class="ok">Terms drafted</span></td></tr>
+        <tr><td>Student plan abuse</td><td>ID or college-email verification, per-account limits</td><td>Product</td><td><span class="ok">Spec ready</span></td></tr>
+        <tr><td>Regional languages arrive late</td><td>State-level waitlists decide the language order after Hinglish proves out</td><td>ML + India ops</td><td><span class="ok">Signals planned</span></td></tr>
+      </tbody>
+    </table></div>
+  </section>
+
+  <footer>Public figures (14% of installs, about 2% of revenue, 60% to 100% month-over-month growth, ₹320 annual-plan pricing) come from published coverage of Wispr Flow’s India push. Everything else is a working assumption: ₹60 cost per install, 8% monthly payer churn, 15% monthly weekly-user churn, base free-to-paid conversion of 2.5%. Colours approximate the Wispr look; swap the variables at the top of the file for exact brand values.</footer>
+</div>
+<div id="toast" role="status"></div>
+
+<script>
+const $=s=>document.querySelector(s);
+const fmtN=n=>Math.round(n).toLocaleString("en-IN");
+const money=n=>n>=1e7?"₹"+(n/1e7).toFixed(2)+" cr":"₹"+(n/1e5).toFixed(1)+" L";
+
+const eq=$("#eq");
+for(let i=0;i<22;i++){const b=document.createElement("i");b.style.animationDelay=(i*0.09)+"s";b.style.animationDuration=(0.9+(i%5)*0.15)+"s";eq.appendChild(b)}
+
+const cur={};
+function tween(id,to,f){const el=$(id),from=cur[id]||0,t0=performance.now(),d=700;cur[id]=to;
+  (function s(t){const p=Math.min(1,(t-t0)/d),e=1-Math.pow(1-p,3);el.textContent=f(from+(to-from)*e);if(p<1)requestAnimationFrame(s)})(t0)}
+
+function model(){
+  const B=+$("#iB").value*1e5,price=+$("#iP").value,ref=+$("#iR").value,onb=+$("#iO").value,lift=+$("#iC").value;
+  const paid=B/60,k=0.15+ref*0.12,total=paid/(1-k);
+  const act=Math.min(0.8,0.45*onb),activated=total*act;
+  const conv=Math.min(0.12,0.025*lift*Math.pow(320/price,0.7));
+  const payers=activated*conv;
+  const ramp=[0.5,0.75,1,1.15,1.3,1.4];let P=0,A=0;const mrr=[],wdu=[];
+  ramp.forEach(r=>{P=P*0.92+payers*r;A=A*0.85+activated*r;mrr.push(P*price);wdu.push(A)});
+  const ltv=price/0.08,cac=B/payers;
+  return {B,price,ref,onb,lift,paid,total,activated,conv,payers,mrr,wdu,ltv,cac,ratio:ltv/cac};
+}
+
+function draw(m){
+  const W=560,H=300,L=14,R=70,T=20,Bt=36,iw=W-L-R,ih=H-T-Bt;
+  const line=a=>{const mx=Math.max(...a)||1;return a.map((v,i)=>[L+iw*i/5,T+ih-(v/mx)*ih])};
+  const path=p=>p.map((q,i)=>(i?"L":"M")+q[0].toFixed(1)+" "+q[1].toFixed(1)).join(" ");
+  const a=line(m.mrr),b=line(m.wdu);
+  let g="";
+  for(let i=0;i<4;i++){const y=T+ih*i/3;g+=`<line x1="${L}" x2="${W-R}" y1="${y}" y2="${y}" stroke="var(--line)"/>`}
+  for(let i=0;i<6;i++)g+=`<text x="${L+iw*i/5}" y="${H-12}" fill="var(--muted)" font-size="12" text-anchor="middle">M${i+1}</text>`;
+  g+=`<path d="${path(a)} L${a[5][0]} ${T+ih} L${a[0][0]} ${T+ih}Z" fill="var(--accent)" opacity=".13"/>`;
+  g+=`<path id="l1" d="${path(a)}" fill="none" stroke="var(--accent)" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>`;
+  g+=`<path id="l2" d="${path(b)}" fill="none" stroke="var(--sand)" stroke-width="3" stroke-dasharray="7 6" stroke-linecap="round"/>`;
+  g+=`<circle r="5" cx="${a[5][0]}" cy="${a[5][1]}" fill="var(--accent)"><animate attributeName="r" values="5;9;5" dur="2s" repeatCount="indefinite"/></circle>`;
+  g+=`<text x="${a[5][0]+10}" y="${a[5][1]+4}" fill="var(--accent)" font-size="13" font-weight="700">${money(m.mrr[5])}</text>`;
+  g+=`<text x="${b[5][0]+10}" y="${b[5][1]+4}" fill="var(--sand)" font-size="13" font-weight="700">${fmtN(m.wdu[5])}</text>`;
+  $("#chart").innerHTML=g;
+}
+
+let first=true;
+function update(){
+  const m=model();
+  $("#vB").textContent="₹"+(m.B/1e5)+" lakh";$("#vP").textContent="₹"+m.price;
+  $("#vR").textContent=["Light","Standard","Aggressive"][m.ref-1];
+  $("#vO").textContent="+"+Math.round((m.onb-1)*100)+"%";$("#vC").textContent="+"+Math.round((m.lift-1)*100)+"%";
+  tween("#kAct",m.activated,fmtN);tween("#kPay",m.payers,fmtN);tween("#kMrr",m.mrr[5],money);tween("#kRatio",m.ratio,v=>v.toFixed(1)+"x");
+  $("#kConv").textContent="free-to-paid "+(m.conv*100).toFixed(1)+"%";
+  $("#kCac").textContent="CAC ₹"+fmtN(m.cac)+" · LTV ₹"+fmtN(m.ltv);
+  const mx=m.total,rows=[["Paid installs",m.paid],["Plus referral installs",m.total],["Activated",m.activated],["New payers",m.payers]];
+  $("#fun").innerHTML=rows.map(r=>`<div class="r"><span>${r[0]}</span><div class="track"><div class="fill" style="width:${Math.max(2,r[1]/mx*100)}%"></div></div><span>${fmtN(r[1])}</span></div>`).join("");
+  draw(m);
+  if(first){first=false;const p=$("#l1"),Ln=p.getTotalLength();p.style.strokeDasharray=Ln;p.style.strokeDashoffset=Ln;p.getBoundingClientRect();p.style.transition="stroke-dashoffset 1.6s ease";p.style.strokeDashoffset=0}
+}
+["iB","iP","iR","iO","iC"].forEach(i=>$("#"+i).addEventListener("input",update));
+
+const camps=[
+ {t:"Bolo. Likhna chhodo.",s:"Creator-led Hinglish demos",o:"Make the Hinglish rant-to-clean-email demo the most shared voice clip in Indian tech and career content.",
+  p:["30 to 50 micro-creators (20k to 200k followers) post unscripted 20-second screen recordings on Shorts, Reels and LinkedIn","Pay a flat fee plus a bonus per activated user, never per install","Test five Hinglish hook lines; double down on the top two after 3 weeks"],
+  m:[["Target","Cost per activated user under benchmark"],["Owner","Growth + India ops"],["Scale if","Top 10 creators beat benchmark"],["Kill if","Bottom half at 2x benchmark after 3 weeks"]]},
+ {t:"WhatsApp-first Flow",s:"Android habit loop",o:"Make the first thing every new Android user does a WhatsApp reply spoken in Hinglish, so the habit forms in the app Indians already live in.",
+  p:["Onboarding opens with “Kaise bolte ho?” and a before and after card of the user’s own sentence","Script toggle for Roman or Devanagari output, asked once","Day-3 and streak nudges that show minutes saved"],
+  m:[["Target","D7 retention up 15%, activation up 20%"],["Owner","Product + Growth"],["Scale if","Activation lift holds across 2 cohorts"],["Kill if","Activation flat after 5k new users"]]},
+ {t:"Campus and family",s:"Students and the people they set up",o:"Win students at low cost, then let them onboard parents and relatives, which reporting says already happens organically.",
+  p:["10-college pilot, then 50: ambassadors get free premium and a leaderboard","Student plan with ID or college-email verification","“Set up Flow for your parents” sends a pre-configured setup link on WhatsApp"],
+  m:[["Target","40+ activated users per ambassador"],["Owner","India ops"],["Scale if","Referral activations above 5% of new users"],["Kill if","Under 10 per ambassador or abuse above 10%"]]}
+];
+function showCamp(i){
+  document.querySelectorAll("#tabs button").forEach((b,j)=>b.setAttribute("aria-selected",j==i));
+  const c=camps[i],el=$("#camp");el.style.animation="none";el.offsetHeight;el.style.animation="";
+  el.innerHTML=`<div class="camp"><div><small style="color:var(--muted)">${c.s}</small><h3>${c.t}</h3><p style="color:var(--muted);margin:0">${c.o}</p><ul>${c.p.map(x=>`<li>${x}</li>`).join("")}</ul></div><div class="side">${c.m.map(r=>`<div><span>${r[0]}</span><b>${r[1]}</b></div>`).join("")}<button class="btn" id="go">Queue this experiment</button></div></div>`;
+  $("#go").onclick=()=>{const t=$("#toast");t.textContent=c.t+" added to the 30-day test queue";t.classList.add("show");setTimeout(()=>t.classList.remove("show"),2800)};
+}
+$("#tabs").innerHTML=camps.map(c=>`<button role="tab" aria-selected="false">${c.t}</button>`).join("");
+document.querySelectorAll("#tabs button").forEach((b,i)=>b.onclick=()=>showCamp(i));
+
+const ph=[["Days 1 to 30","Fix the leaks",["Funnel audit by city tier, device and payment method","UPI checkout, Hinglish onboarding, script toggle","First 15 creator tests"],"Gate: checkout completion up 20%",100],
+ ["Days 31 to 60","Test and scale",["Price ladder and time-saved paywall","Scale top 5 creators, 10-college pilot","Enterprise outreach begins"],"Gate: revenue per install above control",66],
+ ["Days 61 to 90","Compound",["Roll winners out to 100%","Referral loop and student plan live","50 colleges, 100 creators if CAC holds"],"Gate: 5 enterprise pilots signed",33]];
+$("#tl").innerHTML=ph.map(p=>`<div class="card ph"><small style="color:var(--muted)">${p[0]}</small><h3>${p[1]}</h3><div class="bar"><i data-w="${p[4]}"></i></div><ul>${p[2].map(x=>`<li>${x}</li>`).join("")}</ul><div class="gate">${p[3]}</div></div>`).join("");
+
+const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add("in");e.target.querySelectorAll("[data-w]").forEach(n=>n.style.width=n.dataset.w+"%");io.unobserve(e.target)}}),{threshold:.15});
+document.querySelectorAll(".rv").forEach(n=>io.observe(n));
+
+showCamp(0);update();
+</script>
+</body>
+</html>
